@@ -2,6 +2,7 @@ package uk.me.webpigeon.iggi.cows;
 
 import uk.me.webpigeon.util.Vector2D;
 import uk.me.webpigeon.world.Entity;
+import uk.me.webpigeon.world.GrassEntity;
 import uk.me.webpigeon.world.World;
 import uk.me.webpigeon.iggi.btree.AbstractBehavourNode;
 import uk.me.webpigeon.iggi.btree.BehavourNode;
@@ -13,17 +14,22 @@ import uk.me.webpigeon.iggi.btree.BehavourNode;
  * parent node's symbol table and return true, if it is not return 
  * false and don't alter the parent's symbol table.
  */
-public class TargetClosest extends BaseTargetSelection {
+public class RejectYoungPlants extends BaseTargetSelection {
 	
-	public TargetClosest(World world, Class<? extends Entity> type) {
+	public RejectYoungPlants(World world, Class<? extends Entity> type) {
 		super(world, type);
 	}
 
 	@Override
 	protected double getScore(Entity us, Entity target) {
+		GrassEntity grass = (GrassEntity)target;
+		if (grass.getAge() < 200) {
+			return -Double.MAX_VALUE;
+		}
+		
 		Vector2D ourPos = us.getLocation();
 		Vector2D theirPos = target.getLocation();
-		return -ourPos.dist(theirPos);
+		return -ourPos.dist(theirPos) + grass.getAge();
 	}
 
 }

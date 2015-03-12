@@ -39,12 +39,10 @@ public class SteerTowards extends AbstractBehavourNode {
 			us.setVelocity(new Vector2D(0, 0));
 			return true;
 		}
-		System.out.println(this+": "+distance);
 		
-		//we're not close enouph, we need to move
+		//we're not close enough, we need to move
 		Vector2D force = steering.process();
 		us.setVelocity(force);
-	
 		
 		return null;
 	}

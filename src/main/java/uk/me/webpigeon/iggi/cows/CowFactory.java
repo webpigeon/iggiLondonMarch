@@ -10,7 +10,7 @@ import uk.me.webpigeon.world.World;
 public class CowFactory {
 	
 	public static BehavourNode buildEat(World world) {
-		BehavourNode findFood = new TargetClosest(world, GrassEntity.class);
+		BehavourNode findFood = new RejectYoungPlants(world, GrassEntity.class);
 		BehavourNode moveTowards = new SteerTowards(new SeekBehaviour(null));
 		BehavourNode eatFood = new EatItem();
 		

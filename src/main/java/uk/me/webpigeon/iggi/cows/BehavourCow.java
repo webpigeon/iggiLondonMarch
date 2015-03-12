@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 import uk.me.webpigeon.iggi.btree.BehavourEvaluator;
+import uk.me.webpigeon.joseph.cow.Property;
 import uk.me.webpigeon.util.Vector2D;
 import uk.me.webpigeon.world.Entity;
 
@@ -31,6 +32,18 @@ public class BehavourCow extends Entity {
 		Vector2D location = getLocation();
 		g2.setColor(Color.WHITE);
 		g2.fillRect(cowSize.x, cowSize.y, cowSize.width, cowSize.height);
+	}
+	
+	public void debugDraw(Graphics2D g2) {
+		Vector2D myLocation = getLocation();
+		int sightRadius = (int)getValue(Property.SIGHT_RANGE, 50);
+		
+		g2.setColor(Color.WHITE);
+		g2.drawOval((int)myLocation.x - sightRadius, (int)myLocation.y - sightRadius, sightRadius * 2, sightRadius * 2);
+	}
+	
+	public int getZIndex() {
+		return 10;
 	}
 	
 }
