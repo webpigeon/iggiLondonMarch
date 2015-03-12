@@ -21,9 +21,12 @@ public class AIRunner {
 
 	public static void main(String[] args) {
 		DoubleWorld world = new DoubleWorld(800, 600);
-		world.addEntity(buildCows(world));
 		
 		for (int i=0; i<10; i++) {
+			world.addEntity(buildCows(world));
+		}
+		
+		for (int i=0; i<100; i++) {
 			world.addEntity(buildGrass());
 		}
 		
@@ -41,8 +44,11 @@ public class AIRunner {
 
 	protected static Entity buildCows(World world) {
 		BehavourNode root = CowFactory.buildEat(world);
-		BehavourEvaluator eval = new BehavourEvaluator(root);
-		return new BehavourCow(50, 50, eval);
+		BehavourEvaluator eval = new BehavourEvaluator(root, CowFactory.buildWander());
+		
+		Vector2D location = Vector2D.getRandomCartesian(800, 600, true);
+		
+		return new BehavourCow(location.x, location.y, eval);
 	}
 	
 	protected static Entity buildGrass() {

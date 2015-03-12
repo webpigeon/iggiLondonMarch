@@ -36,6 +36,7 @@ public class SteerTowards extends AbstractBehavourNode {
 		// find out if we're close enouph
 		double distance = target.dist(us.getLocation());
 		if (distance <= MIN_DIST) {
+			us.setVelocity(new Vector2D(0, 0));
 			return true;
 		}
 		System.out.println(this+": "+distance);

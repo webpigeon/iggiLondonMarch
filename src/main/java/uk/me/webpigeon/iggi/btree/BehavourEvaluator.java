@@ -3,11 +3,13 @@ package uk.me.webpigeon.iggi.btree;
 import uk.me.webpigeon.world.Entity;
 
 public class BehavourEvaluator {
+	private BehavourNode defaultBehavour;
 	private BehavourNode root;
 	private Entity entity;
 	
-	public BehavourEvaluator(BehavourNode root) {
+	public BehavourEvaluator(BehavourNode root, BehavourNode defaultBh) {
 		this.root = root;
+		this.defaultBehavour = defaultBh;
 	}
 	
 	public void bind(Entity entity){
@@ -23,6 +25,12 @@ public class BehavourEvaluator {
 	 */
 	public void tick() {
 		Boolean tickResult = root.evalBasic(entity);
+		
+		//is not null check to guard against unboxing nulls
+		if (tickResult != null && tickResult == false) {			
+			//if the behavour tree failed, execute some default action;
+			defaultBehavour.evalBasic(entity);
+		}
 	}
 	
 
