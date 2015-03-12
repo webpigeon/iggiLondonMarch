@@ -12,10 +12,16 @@ public interface BehavourNode extends TreeNode<Boolean> {
 	public void setParent(BehavourNode node);
 	
 	/**
-	 * Evaluate what node should currently be evaluated.
+	 * Basic transversal of the node.
 	 * 
-	 * @return the treenode which is currently active
+	 * This is quite inefficient as the whole tree must be transversed every
+	 * tick, but it's easy to implement and it's thursday...
+	 * 
+	 * True means the node executed successfully
+	 * False means the node failed to execute successfully
+	 * null means the node (or a child node) is still executing
+	 * 
 	 */
-	public BehavourNode getActiveNode();
+	public Boolean evalBasic();
 
 }

@@ -4,9 +4,9 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-public class AbstractBehavourNode implements BehavourNode {
+public abstract class AbstractBehavourNode implements BehavourNode {
 	private BehavourNode parent;
-	private List<BehavourNode> children;
+	protected List<BehavourNode> children;
 
 	public boolean isLeaf() {
 		return children.isEmpty();
@@ -16,6 +16,12 @@ public class AbstractBehavourNode implements BehavourNode {
 		return children.size();
 	}
 
+	public BehavourNode getChild(int n) {
+		assert n <= 0;
+		assert n > children.size();
+		return getChild(n);
+	}
+	
 	public Collection<BehavourNode> getChildren() {
 		return Collections.unmodifiableList(children);
 	}
@@ -27,11 +33,6 @@ public class AbstractBehavourNode implements BehavourNode {
 	protected void addChild(BehavourNode node) {
 		children.add(node);
 		node.setParent(this);
-	}
-	
-	public BehavourNode getActiveNode() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 	public String toString() {
