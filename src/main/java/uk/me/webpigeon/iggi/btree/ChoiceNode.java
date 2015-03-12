@@ -50,11 +50,11 @@ public class ChoiceNode extends AbstractBehavourNode {
 	}
 
 	@Override
-	public double utilityScore() {
+	public double utilityScore(Entity entity) {
 		double maxUtil = -Double.MAX_VALUE;
 		for (int i=0;i<getChildCount();i++) {
 			BehavourNode node = getChild(i);
-			double util = node.utilityScore();
+			double util = node.utilityScore(entity);
 			if (util > maxUtil) {
 				maxUtil = util;
 			}
@@ -63,5 +63,9 @@ public class ChoiceNode extends AbstractBehavourNode {
 		return maxUtil;
 	}
 
-
+	@Override
+	public String toString() {
+		return "choice"+super.toString();
+	}
+	
 }

@@ -1,13 +1,16 @@
 package uk.me.webpigeon.iggi.cows;
 
 import java.awt.Graphics2D;
+import java.util.List;
 
 import uk.me.webpigeon.iggi.btree.AbstractBehavourNode;
+import uk.me.webpigeon.joseph.cow.Property;
 import uk.me.webpigeon.steering.SeekBehaviour;
 import uk.me.webpigeon.steering.SteeringBehaviour;
 import uk.me.webpigeon.steering.TargetedBehavour;
 import uk.me.webpigeon.util.Vector2D;
 import uk.me.webpigeon.world.Entity;
+import uk.me.webpigeon.world.Tag;
 
 /**
  * Wrapper around a steering behaviour.
@@ -67,14 +70,13 @@ public class RunAway extends AbstractBehavourNode {
 	}
 
 	@Override
-	public double utilityScore() {
+	public double utilityScore(Entity entity) {
 		Vector2D target = (Vector2D)getTableItem("targetPosition");
 		if (target == null) {
 			// no target set, this makes me sad :(
 			return 0;
 		}
 		
-		return 0;
+		return target.dist(entity.getLocation()) / targetDistance;
 	}
-
 }

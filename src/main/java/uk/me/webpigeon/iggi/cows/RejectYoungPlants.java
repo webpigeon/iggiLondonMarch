@@ -40,8 +40,8 @@ public class RejectYoungPlants extends BaseTargetSelection {
 	}
 
 	@Override
-	public double utilityScore() {
-		return 0;
+	public double utilityScore(Entity entity) {
+		return 1;
 	}
 
 

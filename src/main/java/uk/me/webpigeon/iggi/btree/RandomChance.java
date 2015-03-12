@@ -25,7 +25,7 @@ public class RandomChance extends AbstractBehavourNode {
 	}
 
 	@Override
-	public double utilityScore() {
+	public double utilityScore(Entity entity) {
 		return chance;
 	}
 }

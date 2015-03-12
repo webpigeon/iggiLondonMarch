@@ -32,11 +32,9 @@ public class TargetClosest extends BaseTargetSelection {
 	@Override
 	public void debugDraw(Graphics2D g) {
 	}
-
-	@Override
-	public double utilityScore() {
-		return 0;
+	
+	public String toString() {
+		return "getClosest("+super.toString()+")";
 	}
-
 
 }

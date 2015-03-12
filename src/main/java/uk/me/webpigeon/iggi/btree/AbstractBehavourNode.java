@@ -57,7 +57,10 @@ public abstract class AbstractBehavourNode implements BehavourNode {
 	}
 	
 	public String toString() {
-		return "Node("+children+")";
+		if (isLeaf()) {
+			return "leafNode";
+		}
+		return "("+children.toString()+")";
 	}
 
 	public abstract Boolean evalBasic(Entity us);

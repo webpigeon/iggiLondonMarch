@@ -57,8 +57,13 @@ public class SelectCenterOfEntities extends AbstractBehavourNode {
 	}
 
 	@Override
-	public double utilityScore() {
-		return 0;
+	public double utilityScore(Entity entity) {
+		Vector2D target = (Vector2D)getTableItem("targetPosition");
+		if (target == null) {
+			return 0.0;
+		}
+		
+		return target.dist(entity.getLocation());
 	}
 
 }

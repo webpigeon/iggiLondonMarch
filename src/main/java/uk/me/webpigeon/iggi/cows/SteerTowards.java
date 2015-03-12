@@ -3,6 +3,7 @@ package uk.me.webpigeon.iggi.cows;
 import java.awt.Graphics2D;
 
 import uk.me.webpigeon.iggi.btree.AbstractBehavourNode;
+import uk.me.webpigeon.joseph.cow.Property;
 import uk.me.webpigeon.steering.SeekBehaviour;
 import uk.me.webpigeon.steering.SteeringBehaviour;
 import uk.me.webpigeon.steering.TargetedBehavour;
@@ -67,8 +68,18 @@ public class SteerTowards extends AbstractBehavourNode {
 	}
 
 	@Override
-	public double utilityScore() {
-		return 0;
+	public double utilityScore(Entity entity) {
+		Vector2D target = (Vector2D)getTableItem("targetPosition");
+		if (target == null) {
+			return 0.0;
+		}
+		
+		double distance = target.dist(entity.getLocation());
+		return distance / targetDistance;
+	}
+	
+	public String toString() {
+		return "goTowards";
 	}
 
 }

@@ -70,6 +70,9 @@ public class CowFactory {
 		cow.setValue(Property.SIGHT_RANGE, 100.0);
 		cow.setValue(Property.SATURATION, 1000.0);
 		cow.setValue(Property.METABOLISM, 1.0);
+		cow.setLimit(Property.SIGHT_RANGE, 100.0);
+		cow.setLimit(Property.SATURATION, 1000.0);
+		cow.setLimit(Property.METABOLISM, 1.0);
 		
 		return cow;
 	}

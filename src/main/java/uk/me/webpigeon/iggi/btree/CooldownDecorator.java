@@ -35,8 +35,8 @@ public class CooldownDecorator extends AbstractBehavourNode {
 	}
 
 	@Override
-	public double utilityScore() {
-		return getChild(0).utilityScore();
+	public double utilityScore(Entity entity) {
+		return getChild(0).utilityScore(entity);
 	}
 
 }

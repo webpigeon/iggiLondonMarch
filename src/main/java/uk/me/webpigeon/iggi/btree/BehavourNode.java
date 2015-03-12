@@ -33,6 +33,6 @@ public interface BehavourNode extends TreeNode<Boolean> {
 	
 	public void debugDraw(Graphics2D g);
 
-	public double utilityScore();
+	public double utilityScore(Entity entity);
 
 }

@@ -3,6 +3,7 @@ package uk.me.webpigeon.iggi.cows;
 import java.awt.Graphics2D;
 
 import uk.me.webpigeon.iggi.btree.AbstractBehavourNode;
+import uk.me.webpigeon.joseph.cow.Property;
 import uk.me.webpigeon.steering.SteeringBehaviour;
 import uk.me.webpigeon.util.Vector2D;
 import uk.me.webpigeon.world.Entity;
@@ -36,8 +37,12 @@ public class WanderAbout extends AbstractBehavourNode {
 	}
 
 	@Override
-	public double utilityScore() {
-		return 0;
+	public double utilityScore(Entity entity) {
+		return 1-entity.getNormProp(Property.SATURATION);
+	}
+	
+	public String toString() {
+		return "wander";
 	}
 
 }

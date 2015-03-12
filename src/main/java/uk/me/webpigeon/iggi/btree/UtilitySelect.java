@@ -26,7 +26,7 @@ public class UtilitySelect extends AbstractBehavourNode {
 	@Override
 	public Boolean evalBasic(Entity us) {
 		if (best == null) {
-			best = selectBest();
+			best = selectBest(us);
 		}
 		
 		Boolean result = best.evalBasic(us);
@@ -38,13 +38,15 @@ public class UtilitySelect extends AbstractBehavourNode {
 		return null;
 	}
 	
-	private BehavourNode selectBest() {
+	private BehavourNode selectBest(Entity entity) {
 		BehavourNode bestNode = null;
 		double bestScore = -Double.MAX_VALUE;
 		
 		for (int i=0; i<getChildCount(); i++) {
 			BehavourNode node = getChild(i);
-			double score = getChild(i).utilityScore();
+			double score = getChild(i).utilityScore(entity);
+			System.out.println(node + " : " +score);
+			
 			if (bestScore < score) {
 				bestNode = node;
 				bestScore = score;
@@ -54,11 +56,11 @@ public class UtilitySelect extends AbstractBehavourNode {
 	}
 
 	@Override
-	public double utilityScore() {
+	public double utilityScore(Entity entity) {
 		if (best == null) {
-			best = selectBest();
+			best = selectBest(entity);
 		}
-		return best.utilityScore();
+		return best.utilityScore(entity);
 	}
 
 }

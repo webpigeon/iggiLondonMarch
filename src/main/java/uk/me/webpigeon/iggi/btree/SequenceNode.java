@@ -50,14 +50,19 @@ public class SequenceNode extends AbstractBehavourNode {
 	}
 
 	@Override
-	public double utilityScore() {
+	public double utilityScore(Entity entity) {
 		double total = -Double.MAX_VALUE;
 		for (int i=0;i<getChildCount();i++) {
 			BehavourNode node = getChild(i);
-			total += node.utilityScore();
+			total += node.utilityScore(entity);
 		}
 		
 		return total / getChildCount();
+	}
+	
+	@Override
+	public String toString() {
+		return "sequence"+super.toString();
 	}
 	
 }

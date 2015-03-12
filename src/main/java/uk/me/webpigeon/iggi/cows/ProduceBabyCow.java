@@ -2,10 +2,13 @@ package uk.me.webpigeon.iggi.cows;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.util.List;
 
 import uk.me.webpigeon.iggi.btree.AbstractBehavourNode;
+import uk.me.webpigeon.joseph.cow.Property;
 import uk.me.webpigeon.util.Vector2D;
 import uk.me.webpigeon.world.Entity;
+import uk.me.webpigeon.world.Tag;
 import uk.me.webpigeon.world.World;
 
 public class ProduceBabyCow extends AbstractBehavourNode {
@@ -32,8 +35,13 @@ public class ProduceBabyCow extends AbstractBehavourNode {
 	}
 
 	@Override
-	public double utilityScore() {
-		return 0;
+	public double utilityScore(Entity entity) {
+		double sightRange = entity.getValue(Property.SIGHT_RANGE, 1);
+		
+		List<Entity> cows = world.getNearEntities(entity, sightRange, Tag.COW);
+		List<Entity> food = world.getNearEntities(entity, sightRange, Tag.GRASS);
+		
+		return food.size() / cows.size();
 	}
 
 

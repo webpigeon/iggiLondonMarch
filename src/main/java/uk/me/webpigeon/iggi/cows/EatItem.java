@@ -48,13 +48,14 @@ public class EatItem extends AbstractBehavourNode {
 	}
 
 	@Override
-	public double utilityScore() {
-		Entity target = (Entity)getTableItem("targetEntity");
-		if (target == null) {
-			return 0;
-		}
-		
-		return target.getHealth() / 100.0;
+	public double utilityScore(Entity entity) {
+		double hungerRatio = 1 - entity.getNormProp(Property.SATURATION);
+		return hungerRatio;
+	}
+	 
+	@Override
+	public String toString() {
+		return "eat";
 	}
 
 }

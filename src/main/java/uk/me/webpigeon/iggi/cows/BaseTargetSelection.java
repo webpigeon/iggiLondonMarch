@@ -60,4 +60,21 @@ public abstract class BaseTargetSelection extends AbstractBehavourNode {
 	}
 	
 	protected abstract double getScore(Entity us, Entity target);
+	
+	@Override
+	public double utilityScore(Entity entity) {
+		Vector2D target = (Vector2D)getTableItem("targetPosition");
+		if (target == null) {
+			return 0.0;
+		}
+		
+		double distance = target.dist(entity.getLocation());
+		return distance;
+	}
+	
+	@Override
+	public String toString() {
+		return "InRange["+targetType+"]";
+	}
+	
 }
