@@ -7,6 +7,7 @@ Problems and what I need to do about them to fix them. This exists to help me wr
 * Cows need more behavours to look realistic -> add more behavours
 * Cows overeat the grass until it's all dead and they die -> need to be careful not to eat too much grass
 * Cow reproduction needs to be implemented
+* When adding hearding behavour, plants grow out of control
 
 ## Plant behavours
 * Plants can overwhelm the screen

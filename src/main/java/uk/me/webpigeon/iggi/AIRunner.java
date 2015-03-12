@@ -23,7 +23,7 @@ public class AIRunner {
 		DoubleWorld world = new DoubleWorld(800, 600);
 		
 		buildCows(10, world);
-		buildGrass(1000, world);
+		buildGrass(100, world);
 			
 		// build the game loop
 		Thread gameThread = new Thread(world);

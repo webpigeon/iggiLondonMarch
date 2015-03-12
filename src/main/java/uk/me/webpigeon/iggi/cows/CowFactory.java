@@ -30,13 +30,25 @@ public class CowFactory {
 		return new WanderAbout(new WanderingBehaviour());
 	}
 	
+	public static BehavourNode buildHeard(World world) {
+		BehavourNode centerFinder = new SelectCenterOfEntities(world, BehavourCow.class);
+		BehavourNode moveTowards = new SteerTowards(new SeekBehaviour(null));
+		return new SequenceNode(centerFinder, moveTowards);
+	}
+	
+	public static BehavourNode buildFoodDriver(World world) {
+		BehavourNode centerFinder = new SelectCenterOfEntities(world, GrassEntity.class);
+		BehavourNode moveTowards = new SteerTowards(new SeekBehaviour(null));
+		return new SequenceNode(centerFinder, moveTowards);
+	}
+	
 	public static BehavourNode buildBreed(World world) {
 		BehavourNode breed = new ProduceBabyCow(world);
 		return new SequenceNode(new RandomChance(0.7), new CooldownDecorator(5000, breed));
 	}
 	
 	public static BehavourNode buildRootNode(World world) {
-		return new SequenceNode(true, buildEat(world), buildBreed(world), buildWander());
+		return new SequenceNode(true, buildEat(world), buildFoodDriver(world), buildBreed(world));
 	}
 	
 	
