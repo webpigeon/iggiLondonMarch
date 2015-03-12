@@ -13,13 +13,15 @@ import uk.me.webpigeon.world.Tag;
 
 public class BehavourCow extends Entity {
 	private final Rectangle cowSize;
+	private final Rectangle cowHead;
 	private final BehavourEvaluator evaluator;
 	
 	public BehavourCow(double x, double y, BehavourEvaluator evaluator) {
 		super(x, y, EnumSet.of(Tag.AGENT, Tag.COW));
 		this.evaluator = evaluator;
 		evaluator.bind(this);
-		this.cowSize = new Rectangle(-10, -10, 20, 20);
+		this.cowSize = new Rectangle(-20, -10, 40, 20);
+		this.cowHead = new Rectangle(40, 3, 5, 14);
 	}
 	
 	@Override
@@ -36,7 +38,7 @@ public class BehavourCow extends Entity {
 			health--;
 		}
 		
-		saturation = saturation * getValue(Property.METABOLISM, 0.01);
+		saturation = saturation - getValue(Property.METABOLISM, 1);
 		setValue(Property.SATURATION, saturation);
 		
 		double currentAge = getValue(Property.AGE, 0);
@@ -56,11 +58,14 @@ public class BehavourCow extends Entity {
 		Vector2D location = getLocation();
 		g2.setColor(new Color(healthDec, healthDec, healthDec));
 		g2.fillRect(cowSize.x, cowSize.y, cowSize.width, cowSize.height);
+		
+		g2.setColor(Color.GRAY);
+		g2.fillRect(cowSize.x + cowHead.x, cowSize.y + cowHead.y, cowHead.width, cowHead.height);
 	}
 	
 	public void debugDraw(Graphics2D g2) {
 		Vector2D myLocation = getLocation();
-		int sightRadius = (int)getValue(Property.SIGHT_RANGE, 50);
+		int sightRadius = (int)getValue(Property.SIGHT_RANGE, 100);
 		
 		g2.setColor(Color.WHITE);
 		g2.drawOval((int)myLocation.x - sightRadius, (int)myLocation.y - sightRadius, sightRadius * 2, sightRadius * 2);

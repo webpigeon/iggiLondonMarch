@@ -5,6 +5,10 @@ import uk.me.webpigeon.world.Entity;
 public class ChoiceNode extends AbstractBehavourNode {
 	private int currentID;
 	
+	public ChoiceNode(BehavourNode ... children) {
+		super(false, children);
+	}
+	
 	public ChoiceNode(boolean createTable, BehavourNode ... children) {
 		super(createTable, children);
 	}

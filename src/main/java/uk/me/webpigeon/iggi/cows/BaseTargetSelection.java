@@ -24,7 +24,7 @@ public abstract class BaseTargetSelection extends AbstractBehavourNode {
 	@Override
 	public Boolean evalBasic(Entity entity) {
 		//get all the entities of the required type within our sight range
-		double sightRange = entity.getValue(Property.SIGHT_RANGE, 50);
+		double sightRange = entity.getValue(Property.SIGHT_RANGE, 100);
 		List<Entity> entityList = world.getNearEntities(entity, sightRange);
 		entityList = WorldUtils.filterByType(entityList, targetType);
 		

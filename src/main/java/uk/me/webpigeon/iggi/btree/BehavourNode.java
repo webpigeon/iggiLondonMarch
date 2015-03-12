@@ -1,5 +1,8 @@
 package uk.me.webpigeon.iggi.btree;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
 import uk.me.webpigeon.iggi.tree.TreeNode;
 import uk.me.webpigeon.world.Entity;
 
