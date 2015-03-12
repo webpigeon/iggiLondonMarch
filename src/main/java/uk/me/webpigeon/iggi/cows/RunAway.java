@@ -66,4 +66,15 @@ public class RunAway extends AbstractBehavourNode {
 		}
 	}
 
+	@Override
+	public double utilityScore() {
+		Vector2D target = (Vector2D)getTableItem("targetPosition");
+		if (target == null) {
+			// no target set, this makes me sad :(
+			return 0;
+		}
+		
+		return 0;
+	}
+
 }

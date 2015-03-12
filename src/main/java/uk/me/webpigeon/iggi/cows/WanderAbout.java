@@ -35,4 +35,9 @@ public class WanderAbout extends AbstractBehavourNode {
 		}
 	}
 
+	@Override
+	public double utilityScore() {
+		return 0;
+	}
+
 }

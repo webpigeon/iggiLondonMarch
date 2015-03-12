@@ -47,4 +47,14 @@ public class EatItem extends AbstractBehavourNode {
 		g.drawOval((int)targetPos.x, (int)targetPos.y, 2, 2);
 	}
 
+	@Override
+	public double utilityScore() {
+		Entity target = (Entity)getTableItem("targetEntity");
+		if (target == null) {
+			return 0;
+		}
+		
+		return target.getHealth() / 100.0;
+	}
+
 }

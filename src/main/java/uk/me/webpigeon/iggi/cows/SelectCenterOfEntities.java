@@ -56,4 +56,9 @@ public class SelectCenterOfEntities extends AbstractBehavourNode {
 	public void debugDraw(Graphics2D g) {
 	}
 
+	@Override
+	public double utilityScore() {
+		return 0;
+	}
+
 }

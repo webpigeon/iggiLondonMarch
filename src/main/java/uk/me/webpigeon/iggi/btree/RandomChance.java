@@ -23,4 +23,9 @@ public class RandomChance extends AbstractBehavourNode {
 	@Override
 	public void debugDraw(Graphics2D g) {
 	}
+
+	@Override
+	public double utilityScore() {
+		return chance;
+	}
 }

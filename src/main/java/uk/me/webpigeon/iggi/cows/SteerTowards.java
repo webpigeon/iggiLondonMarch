@@ -66,4 +66,9 @@ public class SteerTowards extends AbstractBehavourNode {
 		}
 	}
 
+	@Override
+	public double utilityScore() {
+		return 0;
+	}
+
 }

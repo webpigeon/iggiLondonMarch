@@ -34,4 +34,9 @@ public class CooldownDecorator extends AbstractBehavourNode {
 		getChild(0).debugDraw(g);	
 	}
 
+	@Override
+	public double utilityScore() {
+		return getChild(0).utilityScore();
+	}
+
 }

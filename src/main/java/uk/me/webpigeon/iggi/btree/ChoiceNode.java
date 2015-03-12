@@ -49,5 +49,19 @@ public class ChoiceNode extends AbstractBehavourNode {
 		current.debugDraw(g);	
 	}
 
+	@Override
+	public double utilityScore() {
+		double maxUtil = -Double.MAX_VALUE;
+		for (int i=0;i<getChildCount();i++) {
+			BehavourNode node = getChild(i);
+			double util = node.utilityScore();
+			if (util > maxUtil) {
+				maxUtil = util;
+			}
+		}
+		
+		return maxUtil;
+	}
+
 
 }

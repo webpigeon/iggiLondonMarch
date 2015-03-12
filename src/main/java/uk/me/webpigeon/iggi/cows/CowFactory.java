@@ -7,6 +7,7 @@ import uk.me.webpigeon.iggi.btree.CooldownDecorator;
 import uk.me.webpigeon.iggi.btree.NDChoiceNode;
 import uk.me.webpigeon.iggi.btree.RandomChance;
 import uk.me.webpigeon.iggi.btree.SequenceNode;
+import uk.me.webpigeon.iggi.btree.UtilitySelect;
 import uk.me.webpigeon.joseph.cow.Property;
 import uk.me.webpigeon.steering.FleeBehaviour;
 import uk.me.webpigeon.steering.SeekBehaviour;
@@ -58,10 +59,8 @@ public class CowFactory {
 	}
 	
 	public static BehavourNode buildRootNode(World world) {
-		BehavourNode foodFinding = new ChoiceNode(buildEat(world), buildFoodDriver(world));
-		BehavourNode choice = new ChoiceNode(buildAvoidHunters(world), foodFinding);
-		
-		return new SequenceNode(true, choice, buildBreed(world));
+		BehavourNode foodFinding = new ChoiceNode(buildEat(world), buildFoodDriver(world));		
+		return new UtilitySelect(true, buildAvoidHunters(world), foodFinding);
 	}
 	
 	

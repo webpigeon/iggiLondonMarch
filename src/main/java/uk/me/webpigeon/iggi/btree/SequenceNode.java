@@ -48,4 +48,16 @@ public class SequenceNode extends AbstractBehavourNode {
 		BehavourNode current = getChild(currentID);
 		current.debugDraw(g);	
 	}
+
+	@Override
+	public double utilityScore() {
+		double total = -Double.MAX_VALUE;
+		for (int i=0;i<getChildCount();i++) {
+			BehavourNode node = getChild(i);
+			total += node.utilityScore();
+		}
+		
+		return total / getChildCount();
+	}
+	
 }
