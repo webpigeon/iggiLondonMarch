@@ -15,6 +15,7 @@ public class SequenceNode extends AbstractBehavourNode {
 		for (int i=currentID; i<getChildCount(); i++) {
 			BehavourNode current = getChild(i);
 			Boolean result = current.evalBasic(entity);
+			System.out.println(currentID + ":"+result);
 			
 			// if result is null, it's still executing
 			if (result == null) {

@@ -12,11 +12,11 @@ import uk.me.webpigeon.iggi.btree.BehavourNode;
  * parent node's symbol table and return true, if it is not return 
  * false and don't alter the parent's symbol table.
  */
-public class LocateEntity extends AbstractBehavourNode {
+public class TargetClosest extends AbstractBehavourNode {
 	private World world;
 	private Class<? extends Entity> targetType;
 	
-	public LocateEntity(World world, Class<? extends Entity> type) {
+	public TargetClosest(World world, Class<? extends Entity> type) {
 		this.targetType = type;
 		this.world = world;
 	}
@@ -33,8 +33,8 @@ public class LocateEntity extends AbstractBehavourNode {
 			throw new RuntimeException("I have no parent node!");
 		}
 		
-		parent.setTableItem("foodTarget", target);
-		parent.setTableItem("steerTarget", target.getLocation());
+		parent.setTableItem("targetEntity", target);
+		parent.setTableItem("targetPosition", target.getLocation());
 		return true;
 	}
 

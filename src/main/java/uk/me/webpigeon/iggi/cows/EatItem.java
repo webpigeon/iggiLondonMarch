@@ -1,6 +1,7 @@
 package uk.me.webpigeon.iggi.cows;
 
 import uk.me.webpigeon.iggi.btree.AbstractBehavourNode;
+import uk.me.webpigeon.joseph.cow.Property;
 import uk.me.webpigeon.util.Vector2D;
 import uk.me.webpigeon.world.Entity;
 
@@ -8,8 +9,8 @@ public class EatItem extends AbstractBehavourNode {
 	private final Double MAX_EAT_DIST = 10.0;
 
 	@Override
-	public Boolean evalBasic(Entity us) {
-		Entity target = (Entity)getTableItem("eatTarget");
+	public Boolean evalBasic(Entity us) {	
+		Entity target = (Entity)getTableItem("targetEntity");
 		if (target == null) {
 			// no target set, this makes me sad :(
 			return false;
@@ -21,7 +22,11 @@ public class EatItem extends AbstractBehavourNode {
 			return false; //can't eat that far away :(
 		}
 		
-		//distance != null
+		// eat the plant \o/
+		double energyValue = target.getHealth();
+		double saturation = us.getValue(Property.SATURATION, 0) + energyValue;
+		us.setValue(Property.SATURATION, saturation);
+		target.setHealth(0);
 		
 		return true;
 	}

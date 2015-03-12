@@ -9,11 +9,11 @@ import uk.me.webpigeon.world.World;
 public class CowFactory {
 	
 	public static BehavourNode buildEat(World world) {
-		BehavourNode findFood = new LocateEntity(world, GrassEntity.class);
+		BehavourNode findFood = new TargetClosest(world, GrassEntity.class);
 		BehavourNode moveTowards = new SteerTowards(new SeekBehaviour(null));
-		//BehavourNode eatFood = null;
+		BehavourNode eatFood = new EatItem();
 		
-		return new SequenceNode(findFood, moveTowards/*, eatFood*/);
+		return new SequenceNode(findFood, moveTowards, eatFood);
 	}
 	
 	public static BehavourNode buildWander() {

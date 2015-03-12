@@ -20,8 +20,8 @@ public class SteerTowards extends AbstractBehavourNode {
 	}
 
 	@Override
-	public Boolean evalBasic(Entity us) {
-		Vector2D target = (Vector2D)getTableItem("steerTarget");
+	public Boolean evalBasic(Entity us) {		
+		Vector2D target = (Vector2D)getTableItem("targetPosition");
 		if (target == null) {
 			// no target set, this makes me sad :(
 			return false;
