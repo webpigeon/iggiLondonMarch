@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 
 import uk.me.webpigeon.world.DoubleWorld;
 
+/**
+ * AI Runner for my (cows) code only.
+ */
 public class AIRunner {
 
 	public static void main(String[] args) {
