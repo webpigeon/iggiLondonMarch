@@ -23,8 +23,20 @@ public class BehavourCow extends Entity {
 	
 	@Override
 	public void update() {
+		processLifeFunctions();
 		evaluator.tick();
 		super.update();
+	}
+	
+	protected void processLifeFunctions() {
+		// if we are are a hungry cow, we take damage
+		double saturation = getValue(Property.SATURATION, 1000);
+		if (saturation <= 0) {
+			health--;
+		}
+		
+		saturation = saturation * getValue(Property.METABOLISM, 0.01);
+		setValue(Property.SATURATION, saturation);
 	}
 
 	@Override
