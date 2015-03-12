@@ -69,6 +69,7 @@ public class BehavourCow extends Entity {
 		
 		g2.setColor(Color.WHITE);
 		g2.drawOval((int)myLocation.x - sightRadius, (int)myLocation.y - sightRadius, sightRadius * 2, sightRadius * 2);
+		evaluator.debugDraw(g2);
 	}
 	
 	public int getZIndex() {

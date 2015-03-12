@@ -1,5 +1,7 @@
 package uk.me.webpigeon.iggi.btree;
 
+import java.awt.Graphics2D;
+
 import uk.me.webpigeon.world.Entity;
 
 public class SequenceNode extends AbstractBehavourNode {
@@ -24,7 +26,7 @@ public class SequenceNode extends AbstractBehavourNode {
 			if (result == null) {
 				return null;
 			} else 	if (result == false) {
-				currentID = 0;
+				resetNode();
 				return false;
 			} else {
 				//the node finished, we'll look at the next one next time
@@ -33,9 +35,17 @@ public class SequenceNode extends AbstractBehavourNode {
 		}
 		
 		// all nodes executed correctly, it's time for some science!
-		currentID = 0;
+		resetNode();
 		return true;
 	}
 
-
+	public void resetNode() {
+		this.currentID = 0;
+	}
+	
+	@Override
+	public void debugDraw(Graphics2D g) {
+		BehavourNode current = getChild(currentID);
+		current.debugDraw(g);	
+	}
 }

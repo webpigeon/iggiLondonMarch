@@ -1,5 +1,7 @@
 package uk.me.webpigeon.iggi.btree;
 
+import java.awt.Graphics2D;
+
 import uk.me.webpigeon.world.Entity;
 
 public class CooldownDecorator extends AbstractBehavourNode {
@@ -25,6 +27,11 @@ public class CooldownDecorator extends AbstractBehavourNode {
 		}
 		
 		return result;
+	}
+	
+	@Override
+	public void debugDraw(Graphics2D g) {
+		getChild(0).debugDraw(g);	
 	}
 
 }

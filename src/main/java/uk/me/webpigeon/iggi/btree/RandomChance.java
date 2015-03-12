@@ -1,5 +1,6 @@
 package uk.me.webpigeon.iggi.btree;
 
+import java.awt.Graphics2D;
 import java.util.Random;
 
 import uk.me.webpigeon.world.Entity;
@@ -19,4 +20,7 @@ public class RandomChance extends AbstractBehavourNode {
 		return randomNumber <= chance;
 	}
 
+	@Override
+	public void debugDraw(Graphics2D g) {
+	}
 }

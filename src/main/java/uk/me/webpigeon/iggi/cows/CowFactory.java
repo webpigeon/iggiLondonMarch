@@ -4,6 +4,7 @@ import uk.me.webpigeon.iggi.btree.BehavourEvaluator;
 import uk.me.webpigeon.iggi.btree.BehavourNode;
 import uk.me.webpigeon.iggi.btree.ChoiceNode;
 import uk.me.webpigeon.iggi.btree.CooldownDecorator;
+import uk.me.webpigeon.iggi.btree.NDChoiceNode;
 import uk.me.webpigeon.iggi.btree.RandomChance;
 import uk.me.webpigeon.iggi.btree.SequenceNode;
 import uk.me.webpigeon.joseph.cow.Property;
@@ -21,7 +22,7 @@ public class CowFactory {
 	public static BehavourNode buildEat(World world) {
 		BehavourNode findOldFood = new RejectYoungPlants(world);
 		BehavourNode findAnyFood = new TargetClosest(world, Tag.GRASS);
-		BehavourNode foodSelectionPolicy = new ChoiceNode(false, findOldFood, findAnyFood);
+		BehavourNode foodSelectionPolicy = new NDChoiceNode(false, findOldFood, findAnyFood);
 		
 		BehavourNode moveTowards = new SteerTowards(new SeekBehaviour(null), 1);
 		BehavourNode eatFood = new EatItem();
@@ -35,7 +36,7 @@ public class CowFactory {
 	
 	public static BehavourNode buildAvoidHunters(World world) {
 		BehavourNode centerFinder = new SelectCenterOfEntities(world, Tag.HUNTER);
-		BehavourNode moveAway = new SteerTowards(new FleeBehaviour(null), 50);
+		BehavourNode moveAway = new RunAway(new FleeBehaviour(null), 50);
 		return new SequenceNode(centerFinder, moveAway);
 	}
 	
@@ -53,7 +54,7 @@ public class CowFactory {
 	
 	public static BehavourNode buildBreed(World world) {
 		BehavourNode breed = new ProduceBabyCow(world);
-		return new SequenceNode(new RandomChance(0.7), new CooldownDecorator(5000, breed));
+		return new SequenceNode(new RandomChance(0.4), new CooldownDecorator(5000, breed));
 	}
 	
 	public static BehavourNode buildRootNode(World world) {

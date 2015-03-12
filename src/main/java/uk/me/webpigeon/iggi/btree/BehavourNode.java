@@ -30,5 +30,7 @@ public interface BehavourNode extends TreeNode<Boolean> {
 	
 	public void setTableItem(String id, Object item);
 	public Object getTableItem(String id);
+	
+	public void debugDraw(Graphics2D g);
 
 }

@@ -1,11 +1,14 @@
 package uk.me.webpigeon.iggi.btree;
 
+import java.awt.Graphics2D;
+
 import uk.me.webpigeon.world.Entity;
 
 public class BehavourEvaluator {
 	private BehavourNode defaultBehavour;
 	private BehavourNode root;
 	private Entity entity;
+	private boolean isActive;
 	
 	public BehavourEvaluator(BehavourNode root, BehavourNode defaultBh) {
 		this.root = root;
@@ -30,6 +33,17 @@ public class BehavourEvaluator {
 		if (tickResult != null && tickResult == false) {			
 			//if the behavour tree failed, execute some default action;
 			defaultBehavour.evalBasic(entity);
+			isActive=false;
+		} else {
+			isActive=true;
+		}
+	}
+
+	public void debugDraw(Graphics2D g2) {
+		if (isActive) {
+			root.debugDraw(g2);
+		} else {
+			defaultBehavour.debugDraw(g2);
 		}
 	}
 	

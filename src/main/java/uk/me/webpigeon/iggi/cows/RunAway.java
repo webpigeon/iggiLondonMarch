@@ -12,7 +12,7 @@ import uk.me.webpigeon.world.Entity;
 /**
  * Wrapper around a steering behaviour.
  */
-public class SteerTowards extends AbstractBehavourNode {
+public class RunAway extends AbstractBehavourNode {
 	private static final Double EPSILON = 1.0;
 	private TargetedBehavour steering;
 	private double targetDistance;
@@ -21,7 +21,7 @@ public class SteerTowards extends AbstractBehavourNode {
 	
 	private Vector2D oldTarget;
 	
-	public SteerTowards(TargetedBehavour steering, double targetDistance) {
+	public RunAway(TargetedBehavour steering, double targetDistance) {
 		this.steering = steering;
 		this.targetDistance = targetDistance;
 	}
@@ -46,7 +46,7 @@ public class SteerTowards extends AbstractBehavourNode {
 		
 		// find out if we're close enouph
 		double distance = target.dist(us.getLocation());
-		if (distance <= targetDistance) {
+		if (distance >= targetDistance) {
 			us.setVelocity(new Vector2D(0, 0));
 			return true;
 		}

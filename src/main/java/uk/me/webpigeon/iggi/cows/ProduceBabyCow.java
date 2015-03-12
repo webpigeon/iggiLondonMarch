@@ -1,5 +1,8 @@
 package uk.me.webpigeon.iggi.cows;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+
 import uk.me.webpigeon.iggi.btree.AbstractBehavourNode;
 import uk.me.webpigeon.util.Vector2D;
 import uk.me.webpigeon.world.Entity;
@@ -23,5 +26,10 @@ public class ProduceBabyCow extends AbstractBehavourNode {
 		
 		return true;
 	}
+	
+	@Override
+	public void debugDraw(Graphics2D g) {
+	}
+
 
 }

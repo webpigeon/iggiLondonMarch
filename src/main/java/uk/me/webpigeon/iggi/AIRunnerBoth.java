@@ -15,6 +15,7 @@ import uk.me.webpigeon.world.Entity;
  */
 public class AIRunnerBoth {
 	public static void main(String[] args) {
+		DoubleWorld.DEBUG_DRAW = true;
 		
 		//build the world
 		DoubleWorld world = new DoubleWorld(800, 600);

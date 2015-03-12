@@ -24,8 +24,8 @@ public class AIRunner {
 		DoubleWorld.DEBUG_DRAW = true;
 		DoubleWorld world = new DoubleWorld(800, 600);
 		
-		world.addComponent(buildOld(10));
-		buildCows(10, world);
+		//world.addComponent(buildOld(10));
+		buildCows(1, world);
 		buildGrass(100, world);
 			
 		// build the game loop
@@ -47,7 +47,7 @@ public class AIRunner {
 	}
 	
 	protected static void buildCows(int n, World world) {
-		for (int i=0; i<10; i++) {
+		for (int i=0; i<n; i++) {
 			world.addEntity(CowFactory.buildCow(world));
 		}
 	}

@@ -1,5 +1,7 @@
 package uk.me.webpigeon.iggi.cows;
 
+import java.awt.Graphics2D;
+
 import uk.me.webpigeon.util.Vector2D;
 import uk.me.webpigeon.world.Entity;
 import uk.me.webpigeon.world.GrassEntity;
@@ -32,5 +34,10 @@ public class RejectYoungPlants extends BaseTargetSelection {
 		Vector2D theirPos = target.getLocation();
 		return -ourPos.dist(theirPos) + grass.getAge();
 	}
+	
+	@Override
+	public void debugDraw(Graphics2D g) {
+	}
+
 
 }

@@ -1,5 +1,6 @@
 package uk.me.webpigeon.iggi.cows;
 
+import java.awt.Graphics2D;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,4 +51,9 @@ public class SelectCenterOfEntities extends AbstractBehavourNode {
 		return true;
 	}
 	
+	
+	@Override
+	public void debugDraw(Graphics2D g) {
+	}
+
 }
