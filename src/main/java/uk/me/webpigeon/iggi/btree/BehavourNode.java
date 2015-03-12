@@ -1,6 +1,7 @@
 package uk.me.webpigeon.iggi.btree;
 
 import uk.me.webpigeon.iggi.tree.TreeNode;
+import uk.me.webpigeon.world.Entity;
 
 public interface BehavourNode extends TreeNode<Boolean> {
 	
@@ -22,6 +23,9 @@ public interface BehavourNode extends TreeNode<Boolean> {
 	 * null means the node (or a child node) is still executing
 	 * 
 	 */
-	public Boolean evalBasic();
+	public Boolean evalBasic(Entity entity);
+	
+	public void setTableItem(String id, Object item);
+	public Object getTableItem(String id);
 
 }

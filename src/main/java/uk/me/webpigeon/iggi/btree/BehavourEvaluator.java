@@ -1,10 +1,17 @@
 package uk.me.webpigeon.iggi.btree;
 
+import uk.me.webpigeon.world.Entity;
+
 public class BehavourEvaluator {
 	private BehavourNode root;
+	private Entity entity;
 	
 	public BehavourEvaluator(BehavourNode root) {
 		this.root = root;
+	}
+	
+	public void bind(Entity entity){
+		this.entity = entity;
 	}
 	
 	/**
@@ -15,8 +22,7 @@ public class BehavourEvaluator {
 	 * be a more interesting class.
 	 */
 	public void tick() {
-		Boolean tickResult = root.evalBasic();
-		System.out.println("debug: "+tickResult);
+		Boolean tickResult = root.evalBasic(entity);
 	}
 	
 

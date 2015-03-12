@@ -9,11 +9,14 @@ import uk.me.webpigeon.util.Vector2D;
 import uk.me.webpigeon.world.Entity;
 
 public class BehavourCow extends Entity {
-	private Rectangle cowSize;
-	private BehavourEvaluator evaluator;
+	private final Rectangle cowSize;
+	private final BehavourEvaluator evaluator;
 	
-	public BehavourCow(BehavourEvaluator evaluator) {
+	public BehavourCow(double x, double y, BehavourEvaluator evaluator) {
+		this.location = new Vector2D(x, y, true);
+		this.health = 100;
 		this.evaluator = evaluator;
+		evaluator.bind(this);
 		this.cowSize = new Rectangle(-10, -10, 20, 20);
 	}
 	
@@ -24,10 +27,10 @@ public class BehavourCow extends Entity {
 	}
 
 	@Override
-	public void drawLocal(Graphics2D g2) {
+	public void drawLocal(Graphics2D g2) {		
 		Vector2D location = getLocation();
 		g2.setColor(Color.WHITE);
-		g2.fillRect((int)(cowSize.x + location.x), (int)(cowSize.y + location.y), cowSize.width, cowSize.height);
+		g2.fillRect(cowSize.x, cowSize.y, cowSize.width, cowSize.height);
 	}
 	
 }

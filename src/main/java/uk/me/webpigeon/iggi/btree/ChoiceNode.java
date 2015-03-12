@@ -2,12 +2,8 @@ package uk.me.webpigeon.iggi.btree;
 
 import uk.me.webpigeon.world.Entity;
 
-public class SequenceNode extends AbstractBehavourNode {
+public class ChoiceNode extends AbstractBehavourNode {
 	private int currentID;
-	
-	public SequenceNode(BehavourNode ... children) {
-		super(children);
-	}
 	
 	@Override
 	public Boolean evalBasic(Entity entity) {		
@@ -19,17 +15,17 @@ public class SequenceNode extends AbstractBehavourNode {
 			// if result is null, it's still executing
 			if (result == null) {
 				return null;
-			} else 	if (result == false) {
-				return false;
+			} else 	if (result == true) {
+				return true;
 			} else {
 				//the node finished, we'll look at the next one next time
 				currentID++;
 			}
 		}
 		
-		// all nodes executed correctly, it's time for some science!
+		// all nodes failed to execute correctly
 		currentID = 0;
-		return true;
+		return false;
 	}
 
 
