@@ -5,6 +5,10 @@ import uk.me.webpigeon.world.Entity;
 public class ChoiceNode extends AbstractBehavourNode {
 	private int currentID;
 	
+	public ChoiceNode(boolean createTable, BehavourNode ... children) {
+		super(createTable, children);
+	}
+	
 	@Override
 	public Boolean evalBasic(Entity entity) {		
 		// if the current node is true (or this is the first node) we need to look at the others
@@ -16,6 +20,7 @@ public class ChoiceNode extends AbstractBehavourNode {
 			if (result == null) {
 				return null;
 			} else 	if (result == true) {
+				currentID = 0;
 				return true;
 			} else {
 				//the node finished, we'll look at the next one next time

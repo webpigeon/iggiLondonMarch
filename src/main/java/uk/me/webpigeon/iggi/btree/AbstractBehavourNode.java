@@ -14,9 +14,16 @@ public abstract class AbstractBehavourNode implements BehavourNode {
 	private List<BehavourNode> children;
 	private Map<String, Object> objects;
 
+	
 	public AbstractBehavourNode(BehavourNode ... children) {
+		this(false, children);
+	}
+	
+	public AbstractBehavourNode(boolean createTable, BehavourNode ... children) {
 		this.children = new ArrayList<BehavourNode>();
-		this.objects = new TreeMap<String, Object>();
+		if (createTable) {
+			this.objects = new TreeMap<String, Object>();
+		}
 		for (BehavourNode child : children) {
 			addChild(child);
 		}
@@ -56,15 +63,25 @@ public abstract class AbstractBehavourNode implements BehavourNode {
 	public abstract Boolean evalBasic(Entity us);
 	
 	public void setTableItem(String id, Object object) {
-		objects.put(id, object);
+		if (objects == null) {
+			if (parent == null) {
+				throw new RuntimeException("Root node has no table");
+			}
+			parent.setTableItem(id, object);
+		} else {
+			objects.put(id, object);
+		}
 	}
 	
 	public Object getTableItem(String id) {
-		Object target = objects.get(id);
+		// if we don't have a table, ask our parent
+		Object target = null;
+		if (objects != null) {
+			target = objects.get(id);
+		}
 		
-		//if it's not in our table, recurse up to see if a parent has it
 		if (target == null && parent != null) {
-			return parent.getTableItem(id);
+			target = parent.getTableItem(id);;
 		}
 		
 		return target;

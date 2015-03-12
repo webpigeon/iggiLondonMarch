@@ -27,8 +27,6 @@ public abstract class BaseTargetSelection extends AbstractBehavourNode {
 		List<Entity> entityList = world.getNearEntities(entity, sightRange);
 		entityList = WorldUtils.filterByType(entityList, targetType);
 		
-		System.out.println(entityList);
-		
 		Entity target = getBest(entity, entityList);
 		if (target == null) {
 			return false;

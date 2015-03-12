@@ -9,18 +9,22 @@ public class SequenceNode extends AbstractBehavourNode {
 		super(children);
 	}
 	
+	public SequenceNode(boolean hasTable, BehavourNode ... children) {
+		super(hasTable, children);
+	}
+
 	@Override
 	public Boolean evalBasic(Entity entity) {		
 		// if the current node is true (or this is the first node) we need to look at the others
 		for (int i=currentID; i<getChildCount(); i++) {
 			BehavourNode current = getChild(i);
 			Boolean result = current.evalBasic(entity);
-			System.out.println(currentID + ":"+result);
 			
 			// if result is null, it's still executing
 			if (result == null) {
 				return null;
 			} else 	if (result == false) {
+				currentID = 0;
 				return false;
 			} else {
 				//the node finished, we'll look at the next one next time

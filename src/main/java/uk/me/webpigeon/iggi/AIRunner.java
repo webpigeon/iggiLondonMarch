@@ -22,14 +22,9 @@ public class AIRunner {
 	public static void main(String[] args) {
 		DoubleWorld world = new DoubleWorld(800, 600);
 		
-		for (int i=0; i<10; i++) {
-			world.addEntity(buildCows(world));
-		}
-		
-		for (int i=0; i<100; i++) {
-			world.addEntity(buildGrass());
-		}
-		
+		buildCows(10, world);
+		buildGrass(1000, world);
+			
 		// build the game loop
 		Thread gameThread = new Thread(world);
 		gameThread.setName("gameThread");
@@ -42,17 +37,16 @@ public class AIRunner {
 		frame.setVisible(true);
 	}
 
-	protected static Entity buildCows(World world) {
-		BehavourNode root = CowFactory.buildEat(world);
-		BehavourEvaluator eval = new BehavourEvaluator(root, CowFactory.buildWander());
-		
-		Vector2D location = Vector2D.getRandomCartesian(800, 600, true);
-		
-		return new BehavourCow(location.x, location.y, eval);
+	protected static void buildCows(int n, World world) {
+		for (int i=0; i<10; i++) {
+			world.addEntity(CowFactory.buildCow(world));
+		}
 	}
 	
-	protected static Entity buildGrass() {
-		return new GrassEntity(Vector2D.getRandomCartesian(800, 600, true));
+	protected static void buildGrass(int n, World world) {
+		for (int i=0; i<n; i++) {
+			world.addEntity(new GrassEntity(Vector2D.getRandomCartesian(800, 600, true)));
+		}
 	}
 	
 	private static JFrame buildFrame() {
