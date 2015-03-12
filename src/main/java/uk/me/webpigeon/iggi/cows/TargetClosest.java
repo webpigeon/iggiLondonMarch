@@ -2,6 +2,7 @@ package uk.me.webpigeon.iggi.cows;
 
 import uk.me.webpigeon.util.Vector2D;
 import uk.me.webpigeon.world.Entity;
+import uk.me.webpigeon.world.Tag;
 import uk.me.webpigeon.world.World;
 import uk.me.webpigeon.iggi.btree.AbstractBehavourNode;
 import uk.me.webpigeon.iggi.btree.BehavourNode;
@@ -15,7 +16,7 @@ import uk.me.webpigeon.iggi.btree.BehavourNode;
  */
 public class TargetClosest extends BaseTargetSelection {
 	
-	public TargetClosest(World world, Class<? extends Entity> type) {
+	public TargetClosest(World world, Tag type) {
 		super(world, type);
 	}
 

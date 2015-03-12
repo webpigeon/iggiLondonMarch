@@ -8,6 +8,7 @@ import uk.me.webpigeon.iggi.btree.BehavourEvaluator;
 import uk.me.webpigeon.iggi.btree.BehavourNode;
 import uk.me.webpigeon.iggi.cows.BehavourCow;
 import uk.me.webpigeon.iggi.cows.CowFactory;
+import uk.me.webpigeon.joseph.CowPopulationManager;
 import uk.me.webpigeon.util.Vector2D;
 import uk.me.webpigeon.world.DoubleWorld;
 import uk.me.webpigeon.world.Entity;
@@ -20,8 +21,10 @@ import uk.me.webpigeon.world.World;
 public class AIRunner {
 
 	public static void main(String[] args) {
+		DoubleWorld.DEBUG_DRAW = true;
 		DoubleWorld world = new DoubleWorld(800, 600);
 		
+		world.addComponent(buildOld(10));
 		buildCows(10, world);
 		buildGrass(100, world);
 			
@@ -37,6 +40,12 @@ public class AIRunner {
 		frame.setVisible(true);
 	}
 
+	protected static CowPopulationManager buildOld(int n) {
+		CowPopulationManager pop = new CowPopulationManager(n);
+	    pop.addMoreCows(n);
+	    return pop;
+	}
+	
 	protected static void buildCows(int n, World world) {
 		for (int i=0; i<10; i++) {
 			world.addEntity(CowFactory.buildCow(world));

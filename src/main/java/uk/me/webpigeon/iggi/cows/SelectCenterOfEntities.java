@@ -9,13 +9,14 @@ import uk.me.webpigeon.iggi.btree.BehavourNode;
 import uk.me.webpigeon.joseph.cow.Property;
 import uk.me.webpigeon.util.Vector2D;
 import uk.me.webpigeon.world.Entity;
+import uk.me.webpigeon.world.Tag;
 import uk.me.webpigeon.world.World;
 
 public class SelectCenterOfEntities extends AbstractBehavourNode {
 	private World world;
-	private Class<? extends Entity> targetType;
+	private Tag targetType;
 	
-	public SelectCenterOfEntities(World world, Class<? extends Entity> type) {
+	public SelectCenterOfEntities(World world, Tag type) {
 		this.targetType = type;
 		this.world = world;
 	}

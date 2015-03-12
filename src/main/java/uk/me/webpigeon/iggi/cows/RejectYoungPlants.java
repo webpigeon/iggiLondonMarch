@@ -3,6 +3,7 @@ package uk.me.webpigeon.iggi.cows;
 import uk.me.webpigeon.util.Vector2D;
 import uk.me.webpigeon.world.Entity;
 import uk.me.webpigeon.world.GrassEntity;
+import uk.me.webpigeon.world.Tag;
 import uk.me.webpigeon.world.World;
 import uk.me.webpigeon.iggi.btree.AbstractBehavourNode;
 import uk.me.webpigeon.iggi.btree.BehavourNode;
@@ -16,8 +17,8 @@ import uk.me.webpigeon.iggi.btree.BehavourNode;
  */
 public class RejectYoungPlants extends BaseTargetSelection {
 	
-	public RejectYoungPlants(World world, Class<? extends Entity> type) {
-		super(world, type);
+	public RejectYoungPlants(World world) {
+		super(world, Tag.GRASS);
 	}
 
 	@Override

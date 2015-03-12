@@ -3,19 +3,20 @@ package uk.me.webpigeon.iggi.cows;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.util.EnumSet;
 
 import uk.me.webpigeon.iggi.btree.BehavourEvaluator;
 import uk.me.webpigeon.joseph.cow.Property;
 import uk.me.webpigeon.util.Vector2D;
 import uk.me.webpigeon.world.Entity;
+import uk.me.webpigeon.world.Tag;
 
 public class BehavourCow extends Entity {
 	private final Rectangle cowSize;
 	private final BehavourEvaluator evaluator;
 	
 	public BehavourCow(double x, double y, BehavourEvaluator evaluator) {
-		this.location = new Vector2D(x, y, true);
-		this.health = 100;
+		super(x, y, EnumSet.of(Tag.AGENT, Tag.COW));
 		this.evaluator = evaluator;
 		evaluator.bind(this);
 		this.cowSize = new Rectangle(-10, -10, 20, 20);

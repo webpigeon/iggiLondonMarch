@@ -6,12 +6,13 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import uk.me.webpigeon.world.Entity;
+import uk.me.webpigeon.world.Tag;
 import uk.me.webpigeon.world.World;
 
 public class WorldUtils {
 	
-	public static List<Entity> filterByType(List<Entity> entities, Class<? extends Entity> targetType) {
-		Predicate<Entity> p = (Entity e) -> targetType.isAssignableFrom(e.getClass());
+	public static List<Entity> filterByType(List<Entity> entities, Tag type) {
+		Predicate<Entity> p = (Entity e) -> e.hasTag(type);
 		return filterEntities(entities, p);
 	}
 	

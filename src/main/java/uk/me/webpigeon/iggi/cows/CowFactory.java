@@ -11,13 +11,14 @@ import uk.me.webpigeon.steering.WanderingBehaviour;
 import uk.me.webpigeon.util.Vector2D;
 import uk.me.webpigeon.world.Entity;
 import uk.me.webpigeon.world.GrassEntity;
+import uk.me.webpigeon.world.Tag;
 import uk.me.webpigeon.world.World;
 
 public class CowFactory {
 	
 	public static BehavourNode buildEat(World world) {
-		BehavourNode findOldFood = new RejectYoungPlants(world, GrassEntity.class);
-		BehavourNode findAnyFood = new TargetClosest(world, GrassEntity.class);
+		BehavourNode findOldFood = new RejectYoungPlants(world);
+		BehavourNode findAnyFood = new TargetClosest(world, Tag.GRASS);
 		BehavourNode foodSelectionPolicy = new ChoiceNode(false, findOldFood, findAnyFood);
 		
 		BehavourNode moveTowards = new SteerTowards(new SeekBehaviour(null));
@@ -31,13 +32,13 @@ public class CowFactory {
 	}
 	
 	public static BehavourNode buildHeard(World world) {
-		BehavourNode centerFinder = new SelectCenterOfEntities(world, BehavourCow.class);
+		BehavourNode centerFinder = new SelectCenterOfEntities(world, Tag.COW);
 		BehavourNode moveTowards = new SteerTowards(new SeekBehaviour(null));
 		return new SequenceNode(centerFinder, moveTowards);
 	}
 	
 	public static BehavourNode buildFoodDriver(World world) {
-		BehavourNode centerFinder = new SelectCenterOfEntities(world, GrassEntity.class);
+		BehavourNode centerFinder = new SelectCenterOfEntities(world, Tag.GRASS);
 		BehavourNode moveTowards = new SteerTowards(new SeekBehaviour(null));
 		return new SequenceNode(centerFinder, moveTowards);
 	}

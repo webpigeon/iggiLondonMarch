@@ -9,13 +9,14 @@ import uk.me.webpigeon.iggi.btree.BehavourNode;
 import uk.me.webpigeon.joseph.cow.Property;
 import uk.me.webpigeon.util.Vector2D;
 import uk.me.webpigeon.world.Entity;
+import uk.me.webpigeon.world.Tag;
 import uk.me.webpigeon.world.World;
 
 public abstract class BaseTargetSelection extends AbstractBehavourNode {
 	private World world;
-	private Class<? extends Entity> targetType;
+	private Tag targetType;
 	
-	public BaseTargetSelection(World world, Class<? extends Entity> type) {
+	public BaseTargetSelection(World world, Tag type) {
 		this.targetType = type;
 		this.world = world;
 	}
