@@ -37,12 +37,23 @@ public class BehavourCow extends Entity {
 		
 		saturation = saturation * getValue(Property.METABOLISM, 0.01);
 		setValue(Property.SATURATION, saturation);
+		
+		double currentAge = getValue(Property.AGE, 0);
+		double maxAge = getLimit(Property.AGE, 10000);
+		if (currentAge >= maxAge) {
+			health = 0;
+		} else {
+			setValue(Property.AGE, currentAge+1);
+		}
 	}
 
 	@Override
-	public void drawLocal(Graphics2D g2) {		
+	public void drawLocal(Graphics2D g2) {	
+		
+		float healthDec = health / 100f;
+		
 		Vector2D location = getLocation();
-		g2.setColor(Color.WHITE);
+		g2.setColor(new Color(healthDec, healthDec, healthDec));
 		g2.fillRect(cowSize.x, cowSize.y, cowSize.width, cowSize.height);
 	}
 	

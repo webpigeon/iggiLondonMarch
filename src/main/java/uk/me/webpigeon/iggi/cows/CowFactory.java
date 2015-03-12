@@ -32,7 +32,7 @@ public class CowFactory {
 	
 	public static BehavourNode buildBreed(World world) {
 		BehavourNode breed = new ProduceBabyCow(world);
-		return new SequenceNode(new RandomChance(0.9), new CooldownDecorator(5000, breed));
+		return new SequenceNode(new RandomChance(0.7), new CooldownDecorator(5000, breed));
 	}
 	
 	public static BehavourNode buildRootNode(World world) {
