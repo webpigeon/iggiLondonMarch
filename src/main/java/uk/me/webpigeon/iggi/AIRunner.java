@@ -12,6 +12,7 @@ import uk.me.webpigeon.joseph.CowPopulationManager;
 import uk.me.webpigeon.util.Vector2D;
 import uk.me.webpigeon.world.DoubleWorld;
 import uk.me.webpigeon.world.Entity;
+import uk.me.webpigeon.world.EntityFactory;
 import uk.me.webpigeon.world.GrassEntity;
 import uk.me.webpigeon.world.World;
 
@@ -48,7 +49,11 @@ public class AIRunner {
 	
 	protected static void buildCows(int n, World world) {
 		for (int i=0; i<n; i++) {
-			world.addEntity(CowFactory.buildCow(world));
+			Entity cow = CowFactory.buildCow(world);
+			
+			//this will set the values to match those of the util cows
+			EntityFactory.setGenome(cow, EntityFactory.buildDefaultGenome());
+			world.addEntity(cow);
 		}
 	}
 	
