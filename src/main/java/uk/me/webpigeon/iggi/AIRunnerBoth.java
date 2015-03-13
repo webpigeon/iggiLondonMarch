@@ -21,8 +21,8 @@ public class AIRunnerBoth {
 		DoubleWorld world = new DoubleWorld(800, 600);
 		world.addEntity(buildHunterVillager());
 		AIRunner.buildGrass(100, world);
-		AIRunner.buildCows(10, world);
-		world.addComponent(AIRunner.buildOld(10));
+		AIRunner.buildCows(5, world);
+		world.addComponent(AIRunner.buildOld(5, world));
 		
 		// build the game loop
 		Thread gameThread = new Thread(world);

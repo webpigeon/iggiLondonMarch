@@ -24,8 +24,8 @@ public class AIRunner {
 		DoubleWorld.DEBUG_DRAW = true;
 		DoubleWorld world = new DoubleWorld(800, 600);
 		
-		//world.addComponent(buildOld(10));
-		buildCows(1, world);
+		world.addComponent(buildOld(5, world));
+		buildCows(5, world);
 		buildGrass(100, world);
 			
 		// build the game loop
@@ -40,9 +40,9 @@ public class AIRunner {
 		frame.setVisible(true);
 	}
 
-	protected static CowPopulationManager buildOld(int n) {
+	protected static CowPopulationManager buildOld(int n, World world) {
 		CowPopulationManager pop = new CowPopulationManager(n);
-	    pop.addMoreCows(n);
+	    pop.addMoreCows(n, world);
 	    return pop;
 	}
 	
